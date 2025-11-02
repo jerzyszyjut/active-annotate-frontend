@@ -1,20 +1,26 @@
-import { Route, Routes } from "react-router-dom";
-
-import IndexPage from "@/pages/index";
-import DocsPage from "@/pages/docs";
-import PricingPage from "@/pages/pricing";
-import BlogPage from "@/pages/blog";
-import AboutPage from "@/pages/about";
+import { useState } from "react";
+import LoginPage from "@/pages/login";
+import DashboardPage from "@/pages/dashboard";
 
 function App() {
+  const [token, setToken] = useState<string | null>(null);
+
+  const handleLogin = (newToken: string) => {
+    setToken(newToken);
+  };
+
+  const handleLogout = () => {
+    setToken(null);
+  };
+
   return (
-    <Routes>
-      <Route element={<IndexPage />} path="/" />
-      <Route element={<DocsPage />} path="/docs" />
-      <Route element={<PricingPage />} path="/pricing" />
-      <Route element={<BlogPage />} path="/blog" />
-      <Route element={<AboutPage />} path="/about" />
-    </Routes>
+    <>
+      {token ? (
+        <DashboardPage token={token} onLogout={handleLogout} />
+      ) : (
+        <LoginPage onLogin={handleLogin} />
+      )}
+    </>
   );
 }
 
