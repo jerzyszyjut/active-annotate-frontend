@@ -1,0 +1,1243 @@
+openapi: 3.0.3
+info:
+  title: active-annotate API
+  version: 1.0.0
+  description: Documentation of API endpoints of active-annotate
+paths:
+  /api/auth-token/:
+    post:
+      operationId: auth_token_create
+      tags:
+        - auth-token
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/AuthToken"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/AuthToken"
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AuthToken"
+        required: true
+      security:
+        - cookieAuth: []
+        - tokenAuth: []
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthToken"
+          description: ""
+  /api/data/datapoints/classification/:
+    get:
+      operationId: data_datapoints_classification_list
+      tags:
+        - data
+      security:
+        - cookieAuth: []
+        - tokenAuth: []
+        - {}
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ClassificationDatapoint"
+          description: ""
+    post:
+      operationId: data_datapoints_classification_create
+      tags:
+        - data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/ClassificationDatapoint"
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/ClassificationDatapoint"
+        required: true
+      security:
+        - cookieAuth: []
+        - tokenAuth: []
+        - {}
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ClassificationDatapoint"
+          description: ""
+  /api/data/datapoints/classification/{id}/:
+    get:
+      operationId: data_datapoints_classification_retrieve
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this classification datapoint.
+          required: true
+      tags:
+        - data
+      security:
+        - cookieAuth: []
+        - tokenAuth: []
+        - {}
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ClassificationDatapoint"
+          description: ""
+    put:
+      operationId: data_datapoints_classification_update
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this classification datapoint.
+          required: true
+      tags:
+        - data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/ClassificationDatapoint"
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/ClassificationDatapoint"
+        required: true
+      security:
+        - cookieAuth: []
+        - tokenAuth: []
+        - {}
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ClassificationDatapoint"
+          description: ""
+    patch:
+      operationId: data_datapoints_classification_partial_update
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this classification datapoint.
+          required: true
+      tags:
+        - data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/PatchedClassificationDatapoint"
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/PatchedClassificationDatapoint"
+      security:
+        - cookieAuth: []
+        - tokenAuth: []
+        - {}
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ClassificationDatapoint"
+          description: ""
+    delete:
+      operationId: data_datapoints_classification_destroy
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this classification datapoint.
+          required: true
+      tags:
+        - data
+      security:
+        - cookieAuth: []
+        - tokenAuth: []
+        - {}
+      responses:
+        "204":
+          description: No response body
+  /api/data/datasets/classification/:
+    get:
+      operationId: data_datasets_classification_list
+      tags:
+        - data
+      security:
+        - cookieAuth: []
+        - tokenAuth: []
+        - {}
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ClassificationDataset"
+          description: ""
+    post:
+      operationId: data_datasets_classification_create
+      tags:
+        - data
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ClassificationDataset"
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/ClassificationDataset"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/ClassificationDataset"
+        required: true
+      security:
+        - cookieAuth: []
+        - tokenAuth: []
+        - {}
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ClassificationDataset"
+          description: ""
+  /api/data/datasets/classification/{id}/:
+    get:
+      operationId: data_datasets_classification_retrieve
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this classification dataset.
+          required: true
+      tags:
+        - data
+      security:
+        - cookieAuth: []
+        - tokenAuth: []
+        - {}
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ClassificationDataset"
+          description: ""
+    put:
+      operationId: data_datasets_classification_update
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this classification dataset.
+          required: true
+      tags:
+        - data
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ClassificationDataset"
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/ClassificationDataset"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/ClassificationDataset"
+        required: true
+      security:
+        - cookieAuth: []
+        - tokenAuth: []
+        - {}
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ClassificationDataset"
+          description: ""
+    patch:
+      operationId: data_datasets_classification_partial_update
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this classification dataset.
+          required: true
+      tags:
+        - data
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PatchedClassificationDataset"
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/PatchedClassificationDataset"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/PatchedClassificationDataset"
+      security:
+        - cookieAuth: []
+        - tokenAuth: []
+        - {}
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ClassificationDataset"
+          description: ""
+    delete:
+      operationId: data_datasets_classification_destroy
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this classification dataset.
+          required: true
+      tags:
+        - data
+      security:
+        - cookieAuth: []
+        - tokenAuth: []
+        - {}
+      responses:
+        "204":
+          description: No response body
+  /api/data/labels/classification/:
+    get:
+      operationId: data_labels_classification_list
+      tags:
+        - data
+      security:
+        - cookieAuth: []
+        - tokenAuth: []
+        - {}
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ClassificationLabel"
+          description: ""
+    post:
+      operationId: data_labels_classification_create
+      tags:
+        - data
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ClassificationLabel"
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/ClassificationLabel"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/ClassificationLabel"
+        required: true
+      security:
+        - cookieAuth: []
+        - tokenAuth: []
+        - {}
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ClassificationLabel"
+          description: ""
+  /api/data/labels/classification/{id}/:
+    get:
+      operationId: data_labels_classification_retrieve
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this classification label.
+          required: true
+      tags:
+        - data
+      security:
+        - cookieAuth: []
+        - tokenAuth: []
+        - {}
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ClassificationLabel"
+          description: ""
+    put:
+      operationId: data_labels_classification_update
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this classification label.
+          required: true
+      tags:
+        - data
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ClassificationLabel"
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/ClassificationLabel"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/ClassificationLabel"
+        required: true
+      security:
+        - cookieAuth: []
+        - tokenAuth: []
+        - {}
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ClassificationLabel"
+          description: ""
+    patch:
+      operationId: data_labels_classification_partial_update
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this classification label.
+          required: true
+      tags:
+        - data
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PatchedClassificationLabel"
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/PatchedClassificationLabel"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/PatchedClassificationLabel"
+      security:
+        - cookieAuth: []
+        - tokenAuth: []
+        - {}
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ClassificationLabel"
+          description: ""
+    delete:
+      operationId: data_labels_classification_destroy
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this classification label.
+          required: true
+      tags:
+        - data
+      security:
+        - cookieAuth: []
+        - tokenAuth: []
+        - {}
+      responses:
+        "204":
+          description: No response body
+  /api/data/predictions/classification/:
+    get:
+      operationId: data_predictions_classification_list
+      tags:
+        - data
+      security:
+        - cookieAuth: []
+        - tokenAuth: []
+        - {}
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ClassificationPrediction"
+          description: ""
+    post:
+      operationId: data_predictions_classification_create
+      tags:
+        - data
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ClassificationPrediction"
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/ClassificationPrediction"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/ClassificationPrediction"
+        required: true
+      security:
+        - cookieAuth: []
+        - tokenAuth: []
+        - {}
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ClassificationPrediction"
+          description: ""
+  /api/data/predictions/classification/{id}/:
+    get:
+      operationId: data_predictions_classification_retrieve
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this classification prediction.
+          required: true
+      tags:
+        - data
+      security:
+        - cookieAuth: []
+        - tokenAuth: []
+        - {}
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ClassificationPrediction"
+          description: ""
+    put:
+      operationId: data_predictions_classification_update
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this classification prediction.
+          required: true
+      tags:
+        - data
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ClassificationPrediction"
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/ClassificationPrediction"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/ClassificationPrediction"
+        required: true
+      security:
+        - cookieAuth: []
+        - tokenAuth: []
+        - {}
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ClassificationPrediction"
+          description: ""
+    patch:
+      operationId: data_predictions_classification_partial_update
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this classification prediction.
+          required: true
+      tags:
+        - data
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PatchedClassificationPrediction"
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/PatchedClassificationPrediction"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/PatchedClassificationPrediction"
+      security:
+        - cookieAuth: []
+        - tokenAuth: []
+        - {}
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ClassificationPrediction"
+          description: ""
+    delete:
+      operationId: data_predictions_classification_destroy
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this classification prediction.
+          required: true
+      tags:
+        - data
+      security:
+        - cookieAuth: []
+        - tokenAuth: []
+        - {}
+      responses:
+        "204":
+          description: No response body
+  /api/integrations/label-studio/annotations-webhook/:
+    post:
+      operationId: integrations_label_studio_annotations_webhook_create
+      tags:
+        - integrations
+      security:
+        - cookieAuth: []
+        - tokenAuth: []
+        - {}
+      responses:
+        "200":
+          description: No response body
+  /api/integrations/label-studio/start-active-learning/:
+    post:
+      operationId: integrations_label_studio_start_active_learning_create
+      tags:
+        - integrations
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/StartActiveLearningLoop"
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/StartActiveLearningLoop"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/StartActiveLearningLoop"
+        required: true
+      security:
+        - cookieAuth: []
+        - tokenAuth: []
+        - {}
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: Active learning started
+  /api/schema/:
+    get:
+      operationId: schema_retrieve
+      description: |-
+        OpenApi3 schema for this API. Format can be selected via content negotiation.
+
+        - YAML: application/vnd.oai.openapi
+        - JSON: application/vnd.oai.openapi+json
+      parameters:
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - yaml
+        - in: query
+          name: lang
+          schema:
+            type: string
+            enum:
+              - af
+              - ar
+              - ar-dz
+              - ast
+              - az
+              - be
+              - bg
+              - bn
+              - br
+              - bs
+              - ca
+              - ckb
+              - cs
+              - cy
+              - da
+              - de
+              - dsb
+              - el
+              - en
+              - en-au
+              - en-gb
+              - eo
+              - es
+              - es-ar
+              - es-co
+              - es-mx
+              - es-ni
+              - es-ve
+              - et
+              - eu
+              - fa
+              - fi
+              - fr
+              - fy
+              - ga
+              - gd
+              - gl
+              - he
+              - hi
+              - hr
+              - hsb
+              - hu
+              - hy
+              - ia
+              - id
+              - ig
+              - io
+              - is
+              - it
+              - ja
+              - ka
+              - kab
+              - kk
+              - km
+              - kn
+              - ko
+              - ky
+              - lb
+              - lt
+              - lv
+              - mk
+              - ml
+              - mn
+              - mr
+              - ms
+              - my
+              - nb
+              - ne
+              - nl
+              - nn
+              - os
+              - pa
+              - pl
+              - pt
+              - pt-br
+              - ro
+              - ru
+              - sk
+              - sl
+              - sq
+              - sr
+              - sr-latn
+              - sv
+              - sw
+              - ta
+              - te
+              - tg
+              - th
+              - tk
+              - tr
+              - tt
+              - udm
+              - ug
+              - uk
+              - ur
+              - uz
+              - vi
+              - zh-hans
+              - zh-hant
+      tags:
+        - schema
+      security:
+        - cookieAuth: []
+        - tokenAuth: []
+      responses:
+        "200":
+          content:
+            application/vnd.oai.openapi:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/yaml:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/vnd.oai.openapi+json:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ""
+  /api/users/:
+    get:
+      operationId: users_list
+      tags:
+        - users
+      security:
+        - cookieAuth: []
+        - tokenAuth: []
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/User"
+          description: ""
+  /api/users/{username}/:
+    get:
+      operationId: users_retrieve
+      parameters:
+        - in: path
+          name: username
+          schema:
+            type: string
+            description:
+              Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+              only.
+          required: true
+      tags:
+        - users
+      security:
+        - cookieAuth: []
+        - tokenAuth: []
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+          description: ""
+    put:
+      operationId: users_update
+      parameters:
+        - in: path
+          name: username
+          schema:
+            type: string
+            description:
+              Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+              only.
+          required: true
+      tags:
+        - users
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/User"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/User"
+        required: true
+      security:
+        - cookieAuth: []
+        - tokenAuth: []
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+          description: ""
+    patch:
+      operationId: users_partial_update
+      parameters:
+        - in: path
+          name: username
+          schema:
+            type: string
+            description:
+              Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+              only.
+          required: true
+      tags:
+        - users
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PatchedUser"
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/PatchedUser"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/PatchedUser"
+      security:
+        - cookieAuth: []
+        - tokenAuth: []
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+          description: ""
+  /api/users/me/:
+    get:
+      operationId: users_me_retrieve
+      tags:
+        - users
+      security:
+        - cookieAuth: []
+        - tokenAuth: []
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+          description: ""
+components:
+  schemas:
+    AuthToken:
+      type: object
+      properties:
+        username:
+          type: string
+          writeOnly: true
+        password:
+          type: string
+          writeOnly: true
+        token:
+          type: string
+          readOnly: true
+      required:
+        - password
+        - token
+        - username
+    ClassificationDatapoint:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        file_url:
+          type: string
+          readOnly: true
+        predictions:
+          type: array
+          items:
+            $ref: "#/components/schemas/ClassificationPrediction"
+          readOnly: true
+        label:
+          allOf:
+            - $ref: "#/components/schemas/ClassificationLabel"
+          readOnly: true
+        class_index:
+          type: integer
+          writeOnly: true
+        file:
+          type: string
+          format: uri
+          writeOnly: true
+        dataset:
+          type: integer
+      required:
+        - dataset
+        - file_url
+        - id
+        - label
+        - predictions
+    ClassificationDataset:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        datapoints:
+          type: array
+          items:
+            $ref: "#/components/schemas/ClassificationDatapoint"
+          readOnly: true
+        labels:
+          type: array
+          items:
+            $ref: "#/components/schemas/ClassificationLabel"
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        label_studio_url:
+          type: string
+          maxLength: 255
+        label_studio_api_key:
+          type: string
+          maxLength: 255
+        ml_backend_url:
+          type: string
+          maxLength: 255
+        batch_size:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          description: Number of datapoints to process in each batch.
+      required:
+        - datapoints
+        - id
+        - label_studio_api_key
+        - label_studio_url
+        - labels
+        - ml_backend_url
+        - name
+    ClassificationLabel:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        class_index:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          title: Class ID
+        class_label:
+          type: string
+          maxLength: 255
+        dataset:
+          type: integer
+      required:
+        - class_index
+        - class_label
+        - dataset
+        - id
+    ClassificationPrediction:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        predicted_label:
+          allOf:
+            - $ref: "#/components/schemas/ClassificationLabel"
+          readOnly: true
+        predicted_class_index:
+          type: integer
+          writeOnly: true
+        confidence:
+          type: number
+          format: double
+          nullable: true
+        model_version:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        datapoint:
+          type: integer
+      required:
+        - datapoint
+        - id
+        - model_version
+        - predicted_label
+    PatchedClassificationDatapoint:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        file_url:
+          type: string
+          readOnly: true
+        predictions:
+          type: array
+          items:
+            $ref: "#/components/schemas/ClassificationPrediction"
+          readOnly: true
+        label:
+          allOf:
+            - $ref: "#/components/schemas/ClassificationLabel"
+          readOnly: true
+        class_index:
+          type: integer
+          writeOnly: true
+        file:
+          type: string
+          format: uri
+          writeOnly: true
+        dataset:
+          type: integer
+    PatchedClassificationDataset:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        datapoints:
+          type: array
+          items:
+            $ref: "#/components/schemas/ClassificationDatapoint"
+          readOnly: true
+        labels:
+          type: array
+          items:
+            $ref: "#/components/schemas/ClassificationLabel"
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        label_studio_url:
+          type: string
+          maxLength: 255
+        label_studio_api_key:
+          type: string
+          maxLength: 255
+        ml_backend_url:
+          type: string
+          maxLength: 255
+        batch_size:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          description: Number of datapoints to process in each batch.
+    PatchedClassificationLabel:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        class_index:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          title: Class ID
+        class_label:
+          type: string
+          maxLength: 255
+        dataset:
+          type: integer
+    PatchedClassificationPrediction:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        predicted_label:
+          allOf:
+            - $ref: "#/components/schemas/ClassificationLabel"
+          readOnly: true
+        predicted_class_index:
+          type: integer
+          writeOnly: true
+        confidence:
+          type: number
+          format: double
+          nullable: true
+        model_version:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        datapoint:
+          type: integer
+    PatchedUser:
+      type: object
+      properties:
+        username:
+          type: string
+          description:
+            Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        name:
+          type: string
+          title: Name of User
+          maxLength: 255
+        url:
+          type: string
+          format: uri
+          readOnly: true
+    StartActiveLearningLoop:
+      type: object
+      properties:
+        dataset_id:
+          type: integer
+      required:
+        - dataset_id
+    User:
+      type: object
+      properties:
+        username:
+          type: string
+          description:
+            Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        name:
+          type: string
+          title: Name of User
+          maxLength: 255
+        url:
+          type: string
+          format: uri
+          readOnly: true
+      required:
+        - url
+        - username
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid
+    tokenAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Token-based authentication with required prefix "Token"
