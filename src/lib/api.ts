@@ -183,3 +183,15 @@ export const predictionsAPI = {
       method: "DELETE",
     }),
 };
+
+// Integrations
+export const integrationsAPI = {
+  startActiveLearning: (datasetId: number) =>
+    fetchAPI<{ status: string }>(
+      `/api/integrations/label-studio/start-active-learning/`,
+      {
+        method: "POST",
+        body: JSON.stringify({ dataset_id: datasetId }),
+      },
+    ),
+};

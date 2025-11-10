@@ -34,9 +34,15 @@ export function useDatasets() {
     fetchDatasets();
   }, []);
 
-  const createDataset = async (name: string) => {
+  const createDataset = async (data: {
+    name: string;
+    label_studio_url?: string;
+    label_studio_api_key?: string;
+    ml_backend_url?: string;
+    batch_size?: number;
+  }) => {
     try {
-      const newDataset = await datasetsAPI.create({ name });
+      const newDataset = await datasetsAPI.create(data as any);
       setDatasets([...datasets, newDataset]);
       return newDataset;
     } catch (err) {

@@ -1,13 +1,11 @@
+// lightweight presentational component; no React namespace required directly
 import { ClassificationDatapoint } from "@/types";
-import { Card, CardBody } from "@heroui/card";
-import { Image } from "@heroui/image";
-import { Button } from "@heroui/button";
 
-interface DatapointCardProps {
+interface Props {
   datapoint: ClassificationDatapoint;
-  isSelected: boolean;
-  onSelect: () => void;
-  onDelete: () => void;
+  isSelected?: boolean;
+  onSelect?: () => void;
+  onDelete?: () => void;
 }
 
 export default function DatapointCard({
@@ -15,43 +13,37 @@ export default function DatapointCard({
   isSelected,
   onSelect,
   onDelete,
-}: DatapointCardProps) {
+}: Props) {
   return (
-    <Card
-      isPressable
-      className={`bg-slate-700 border ${
-        isSelected ? "border-purple-500" : "border-slate-600"
-      } transition-colors`}
-      onPress={onSelect}
+    <div
+      onClick={onSelect}
+      className={`p-3 rounded cursor-pointer ${isSelected ? "ring-2 ring-purple-500" : "bg-slate-700"}`}
     >
-      <CardBody className="gap-3">
-        <Image
+      {datapoint.file_url && (
+        <img
           src={datapoint.file_url}
-          alt="datapoint"
-          className="w-full h-48 object-cover rounded"
+          alt={`dp-${datapoint.id}`}
+          className="w-full h-28 object-cover rounded mb-2"
         />
-        <div className="space-y-2">
-          <p className="text-sm font-medium text-slate-300">#{datapoint.id}</p>
-          <p className="text-xs text-slate-400">
-            Label: {datapoint.label?.class_label || "None"}
-          </p>
-          <p className="text-xs text-slate-400">
-            Predictions: {datapoint.predictions.length}
-          </p>
-          {isSelected && (
-            <div className="flex gap-2 pt-2">
-              <Button
-                size="sm"
-                color="danger"
-                variant="flat"
-                onPress={onDelete}
-              >
-                Delete
-              </Button>
-            </div>
-          )}
-        </div>
-      </CardBody>
-    </Card>
+      )}
+      <div className="text-sm font-medium">#{datapoint.id}</div>
+      <div className="text-xs text-slate-400">
+        {datapoint.label?.class_label || "No label"}
+      </div>
+      <div className="text-xs text-slate-400">
+        Predictions: {datapoint.predictions?.length || 0}
+      </div>
+      {onDelete && (
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            onDelete();
+          }}
+          className="mt-2 px-2 py-1 bg-red-600 rounded text-sm"
+        >
+          Delete
+        </button>
+      )}
+    </div>
   );
 }
