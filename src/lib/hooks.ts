@@ -34,15 +34,9 @@ export function useDatasets() {
     fetchDatasets();
   }, []);
 
-  const createDataset = async (data: {
-    name: string;
-    label_studio_url?: string;
-    label_studio_api_key?: string;
-    ml_backend_url?: string;
-    batch_size?: number;
-  }) => {
+  const createDataset = async (name: string) => {
     try {
-      const newDataset = await datasetsAPI.create(data as any);
+      const newDataset = await datasetsAPI.create({ name });
       setDatasets([...datasets, newDataset]);
       return newDataset;
     } catch (err) {

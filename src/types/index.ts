@@ -38,10 +38,6 @@ export interface ClassificationDataset {
   datapoints?: ClassificationDatapoint[];
   labels?: ClassificationLabel[];
   name: string;
-  label_studio_url?: string;
-  label_studio_api_key?: string;
-  ml_backend_url?: string;
-  batch_size?: number;
 }
 
 export interface AuthToken {
