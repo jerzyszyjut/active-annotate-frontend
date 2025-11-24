@@ -27,6 +27,9 @@ export function CreateDatasetModal({
   const [mlBackendUrl, setMlBackendUrl] = useState("");
   const [batchSize, setBatchSize] = useState("16");
   const [uncertaintyStrategy, setUncertaintyStrategy] = useState("");
+  const [epoch, setEpoch] = useState("0");
+  const [maxEpochs, setMaxEpochs] = useState("0");
+  const [state, setState] = useState("")
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -46,7 +49,8 @@ export function CreateDatasetModal({
         label_studio_api_key: labelStudioApiKey,
         ml_backend_url: mlBackendUrl,
         batch_size: parseInt(batchSize, 10) || 16,
-        uncertainty_strategy: uncertaintyStrategy
+        uncertainty_strategy: uncertaintyStrategy,
+        max_epochs: parseInt(maxEpochs, 10) || 1,
       });
 
       // Reset form
@@ -56,6 +60,9 @@ export function CreateDatasetModal({
       setMlBackendUrl("");
       setBatchSize("16");
       setUncertaintyStrategy("");
+      setEpoch("");
+      setMaxEpochs("");
+      setState("");
 
       onSuccess();
       onClose();
@@ -131,6 +138,25 @@ export function CreateDatasetModal({
             disabled={loading}
             min="1"
             max="1000"
+          />
+
+          <Input
+            label="Max epochs"
+            type="number"
+            placeholder="1"
+            value={maxEpochs}
+            onValueChange={setMaxEpochs}
+            disabled={loading}
+            min="1"
+            max="1000"
+          />
+
+          <Input
+            label="Uncertainty strategy"
+            placeholder="entropy"
+            value={uncertaintyStrategy}
+            onValueChange={setUncertaintyStrategy}
+            disabled={loading}
           />
         </ModalBody>
         <ModalFooter>

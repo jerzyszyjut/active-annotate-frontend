@@ -1,3 +1,4 @@
+import { NumberInputSlots } from "@heroui/theme";
 import { SVGProps } from "react";
 
 export type IconSvgProps = SVGProps<SVGSVGElement> & {
@@ -35,9 +36,25 @@ export interface ClassificationDataset {
   ml_backend_url: string;
   batch_size: number;
   uncertainty_strategy: string;
+  epoch: number;
+  max_epochs: number;
+  state: string;
   datapoints: ClassificationDatapoint[];
   labels: ClassificationLabel[];
 }
+
+// export interface CreateClassificationDataset {
+//   id: number;
+//   name: string;
+//   label_studio_url: string;
+//   label_studio_api_key: string;
+//   ml_backend_url: string;
+//   batch_size: number;
+//   max_epochs: number;
+//   uncertainty_strategy: string;
+//   datapoints: ClassificationDatapoint[];
+//   labels: ClassificationLabel[];
+// }
 
 export interface ApiError {
   message: string;

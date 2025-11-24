@@ -104,6 +104,7 @@ export default function DashboardPage() {
                     <th className="text-left p-2">Datapoints</th>
                     <th className="text-left p-2">Labels</th>
                     <th className="text-left p-2">Batch Size</th>
+                    <th className="text-left p-2">Epochs</th>
                     <th className="text-left p-2">Actions</th>
                   </tr>
                 </thead>
@@ -118,6 +119,7 @@ export default function DashboardPage() {
                       <td className="p-2">{dataset.datapoints.length}</td>
                       <td className="p-2">{dataset.labels.length}</td>
                       <td className="p-2">{dataset.batch_size}</td>
+                      <td className="p-2">{dataset.epoch} / {dataset.max_epochs}</td>
                       <td className="p-2">
                         <button
                           onClick={(e) => {

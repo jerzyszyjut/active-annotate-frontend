@@ -1,5 +1,6 @@
 import ky, { HTTPError } from "ky";
 import type {
+  // CreateClassificationDataset,
   ClassificationDataset,
   ClassificationDatapoint,
   ClassificationLabel,
@@ -29,6 +30,7 @@ export const datasetsApi = {
     ml_backend_url: string;
     batch_size: number;
     uncertainty_strategy: string;
+    max_epochs: number;
   }) =>
     api
       .post("data/datasets/classification/", { json: data })

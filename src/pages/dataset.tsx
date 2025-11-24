@@ -125,7 +125,8 @@ export default function DatasetPage() {
         label_studio_api_key: data.label_studio_api_key,
         ml_backend_url: data.ml_backend_url,
         batch_size: data.batch_size,
-        uncertainty_strategy: data.uncertainty_strategy
+        uncertainty_strategy: data.uncertainty_strategy,
+        max_epochs: data.max_epochs,
       });
     } catch (err) {
       setError(handleApiError(err));
@@ -168,6 +169,7 @@ export default function DatasetPage() {
         ml_backend_url: dataset.ml_backend_url,
         batch_size: dataset.batch_size,
         uncertainty_strategy: dataset.uncertainty_strategy,
+        max_epochs: dataset.max_epochs,
       });
     }
     setIsEditingInfo(false);
@@ -309,6 +311,17 @@ export default function DatasetPage() {
                   })
                 }
               />
+              <Input
+                label="Max epochs"
+                type="number"
+                value={String(editedDataset.max_epochs || 1)}
+                onValueChange={(value) =>
+                  setEditedDataset({
+                    ...editedDataset,
+                    max_epochs: parseInt(value, 10) || 1,
+                  })
+                }
+              />
               <div className="flex gap-2 mt-4">
                 <Button
                   color="success"
@@ -349,6 +362,18 @@ export default function DatasetPage() {
               <div>
                 <p className="text-sm text-default-500">Uncertainty Strategy</p>
                 <p className="text-sm">{dataset.uncertainty_strategy}</p>
+              </div>
+              <div>
+                <p className="text-sm text-default-500">Current epoch</p>
+                <p className="text-sm">{dataset.epoch}</p>
+              </div>
+              <div>
+                <p className="text-sm text-default-500">Max epochs</p>
+                <p className="text-sm">{dataset.max_epochs}</p>
+              </div>
+              <div>
+                <p className="text-sm text-default-500">Active Learning State</p>
+                <p className="text-sm">{dataset.state}</p>
               </div>
             </div>
           )}
