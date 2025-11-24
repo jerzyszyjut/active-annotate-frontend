@@ -125,6 +125,7 @@ export default function DatasetPage() {
         label_studio_api_key: data.label_studio_api_key,
         ml_backend_url: data.ml_backend_url,
         batch_size: data.batch_size,
+        uncertainty_strategy: data.uncertainty_strategy
       });
     } catch (err) {
       setError(handleApiError(err));
@@ -166,6 +167,7 @@ export default function DatasetPage() {
         label_studio_api_key: dataset.label_studio_api_key,
         ml_backend_url: dataset.ml_backend_url,
         batch_size: dataset.batch_size,
+        uncertainty_strategy: dataset.uncertainty_strategy,
       });
     }
     setIsEditingInfo(false);
@@ -297,6 +299,16 @@ export default function DatasetPage() {
                   })
                 }
               />
+              <Input
+                label="Uncertainty Strategy"
+                value={editedDataset.uncertainty_strategy || ""}
+                onValueChange={(value) =>
+                  setEditedDataset({
+                    ...editedDataset,
+                    uncertainty_strategy: value,
+                  })
+                }
+              />
               <div className="flex gap-2 mt-4">
                 <Button
                   color="success"
@@ -333,6 +345,10 @@ export default function DatasetPage() {
               <div>
                 <p className="text-sm text-default-500">Batch Size</p>
                 <p className="text-sm">{dataset.batch_size}</p>
+              </div>
+              <div>
+                <p className="text-sm text-default-500">Uncertainty Strategy</p>
+                <p className="text-sm">{dataset.uncertainty_strategy}</p>
               </div>
             </div>
           )}

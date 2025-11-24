@@ -26,6 +26,7 @@ export function CreateDatasetModal({
   const [labelStudioApiKey, setLabelStudioApiKey] = useState("");
   const [mlBackendUrl, setMlBackendUrl] = useState("");
   const [batchSize, setBatchSize] = useState("16");
+  const [uncertaintyStrategy, setUncertaintyStrategy] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -45,6 +46,7 @@ export function CreateDatasetModal({
         label_studio_api_key: labelStudioApiKey,
         ml_backend_url: mlBackendUrl,
         batch_size: parseInt(batchSize, 10) || 16,
+        uncertainty_strategy: uncertaintyStrategy
       });
 
       // Reset form
@@ -53,6 +55,7 @@ export function CreateDatasetModal({
       setLabelStudioApiKey("");
       setMlBackendUrl("");
       setBatchSize("16");
+      setUncertaintyStrategy("");
 
       onSuccess();
       onClose();
