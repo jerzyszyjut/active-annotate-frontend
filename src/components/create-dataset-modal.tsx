@@ -27,9 +27,7 @@ export function CreateDatasetModal({
   const [mlBackendUrl, setMlBackendUrl] = useState("");
   const [batchSize, setBatchSize] = useState("16");
   const [uncertaintyStrategy, setUncertaintyStrategy] = useState("");
-  const [epoch, setEpoch] = useState("0");
   const [maxEpochs, setMaxEpochs] = useState("0");
-  const [state, setState] = useState("")
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -53,16 +51,13 @@ export function CreateDatasetModal({
         max_epochs: parseInt(maxEpochs, 10) || 1,
       });
 
-      // Reset form
       setName("");
       setLabelStudioUrl("");
       setLabelStudioApiKey("");
       setMlBackendUrl("");
       setBatchSize("16");
       setUncertaintyStrategy("");
-      setEpoch("");
       setMaxEpochs("");
-      setState("");
 
       onSuccess();
       onClose();

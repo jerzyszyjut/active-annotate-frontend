@@ -43,19 +43,6 @@ export interface ClassificationDataset {
   labels: ClassificationLabel[];
 }
 
-// export interface CreateClassificationDataset {
-//   id: number;
-//   name: string;
-//   label_studio_url: string;
-//   label_studio_api_key: string;
-//   ml_backend_url: string;
-//   batch_size: number;
-//   max_epochs: number;
-//   uncertainty_strategy: string;
-//   datapoints: ClassificationDatapoint[];
-//   labels: ClassificationLabel[];
-// }
-
 export interface ApiError {
   message: string;
   status: number;

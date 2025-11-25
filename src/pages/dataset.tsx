@@ -43,14 +43,12 @@ export default function DatasetPage() {
   const [isStartingActiveLearning, setIsStartingActiveLearning] =
     useState(false);
 
-  // Dataset info edit state
   const [isEditingInfo, setIsEditingInfo] = useState(false);
   const [editedDataset, setEditedDataset] = useState<
     Partial<ClassificationDataset>
   >({});
   const [isSaving, setIsSaving] = useState(false);
 
-  // Filter state
   const [filterByLabel, setFilterByLabel] = useState<
     "all" | "labeled" | "unlabeled"
   >("all");
@@ -60,19 +58,15 @@ export default function DatasetPage() {
 
   const datasetId = id ? parseInt(id, 10) : null;
 
-  // Compute filtered datapoints
   const filteredDatapoints = useMemo(() => {
     if (!dataset) return [];
 
     return dataset.datapoints.filter((dp) => {
-      // Filter by label
       if (filterByLabel === "labeled" && !dp.label) return false;
       if (filterByLabel === "unlabeled" && dp.label) return false;
 
-      // Filter by predictions
       if (dp.predictions.length === 0) return true;
 
-      // Filter by confidence
       const minConf = filterByMinConfidence
         ? parseFloat(filterByMinConfidence)
         : -1;
@@ -183,7 +177,7 @@ export default function DatasetPage() {
       setError(null);
       const response = await activeLearningApi.startActivelearning(datasetId);
       alert(
-        `Active Learning Started!\n\n${response.message || "Check your Label Studio instance for new tasks."}`
+        `Active Learning Started!\n\n${response.status || "Check your Label Studio instance for new tasks."}`
       );
     } catch (err) {
       const errorMsg = handleApiError(err);
@@ -230,7 +224,6 @@ export default function DatasetPage() {
         </div>
       )}
 
-      {/* Dataset Info Card */}
       <Card className="mb-6">
         <CardHeader className="flex justify-between items-center">
           <div>
@@ -311,17 +304,6 @@ export default function DatasetPage() {
                   })
                 }
               />
-              <Input
-                label="Max epochs"
-                type="number"
-                value={String(editedDataset.max_epochs || 1)}
-                onValueChange={(value) =>
-                  setEditedDataset({
-                    ...editedDataset,
-                    max_epochs: parseInt(value, 10) || 1,
-                  })
-                }
-              />
               <div className="flex gap-2 mt-4">
                 <Button
                   color="success"
@@ -380,7 +362,6 @@ export default function DatasetPage() {
         </CardBody>
       </Card>
 
-      {/* Statistics */}
       <div className="grid grid-cols-3 gap-4 mb-6">
         <Card>
           <CardBody className="text-center">
@@ -404,8 +385,8 @@ export default function DatasetPage() {
         </Card>
       </div>
 
-      {/* Action Buttons */}
       <div className="mb-6 flex gap-3 flex-wrap">
+      {dataset.datapoints.length > 0 && dataset.labels.length > 0 && dataset.state == "not-started" && (
         <Button
           color="success"
           size="lg"
@@ -415,6 +396,7 @@ export default function DatasetPage() {
         >
           Start Active Learning
         </Button>
+      )}
         <Button color="secondary" size="lg" onClick={onLabelModalOpen}>
           Manage Labels
         </Button>
@@ -423,13 +405,11 @@ export default function DatasetPage() {
         </Button>
       </div>
 
-      {/* Datapoints List */}
-      <Card>
+     <Card>
         <CardHeader>
           <div className="w-full">
             <h2 className="text-xl font-bold mb-4">Datapoints</h2>
 
-            {/* Filter Section */}
             <div className="bg-default-100 p-4 rounded-lg mb-4">
               <p className="text-sm font-semibold mb-3">Filter Datapoints</p>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">

@@ -1,6 +1,5 @@
 import ky, { HTTPError } from "ky";
 import type {
-  // CreateClassificationDataset,
   ClassificationDataset,
   ClassificationDatapoint,
   ClassificationLabel,
@@ -15,7 +14,6 @@ const api = ky.create({
   timeout: 30000,
 });
 
-// Datasets
 export const datasetsApi = {
   list: () =>
     api.get("data/datasets/classification/").json<ClassificationDataset[]>(),
@@ -45,7 +43,6 @@ export const datasetsApi = {
       .json<ClassificationDataset>(),
 };
 
-// Datapoints
 export const datapointsApi = {
   list: () =>
     api
@@ -69,7 +66,6 @@ export const datapointsApi = {
       .json<ClassificationDatapoint>(),
 };
 
-// Labels
 export const labelsApi = {
   list: () =>
     api
@@ -90,7 +86,6 @@ export const labelsApi = {
       .json<ClassificationLabel>(),
 };
 
-// Predictions
 export const predictionsApi = {
   list: () =>
     api
@@ -112,7 +107,6 @@ export const predictionsApi = {
       .json<ClassificationPrediction>(),
 };
 
-// Active Learning
 export const activeLearningApi = {
   startActivelearning: (datasetId: number) =>
     api
@@ -122,7 +116,6 @@ export const activeLearningApi = {
       .json<{ status: string; message: string }>(),
 };
 
-// Error handling helper
 export const handleApiError = (error: unknown): string => {
   if (error instanceof HTTPError) {
     return `API Error: ${error.response.status} ${error.response.statusText}`;
