@@ -40,10 +40,7 @@ export default function DashboardPage() {
   };
 
   const handleViewDataset = (id: number) => {
-    console.log("Navigating to dataset:", id);
-    const path = `/dataset/${id}`;
-    console.log("Path:", path);
-    navigate(path);
+    navigate(`/dataset/${id}`);
   };
 
   const handleCreateDatasetSuccess = () => {

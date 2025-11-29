@@ -546,14 +546,12 @@ export default function DatasetPage() {
         </CardBody>
       </Card>
 
-      {/* Datapoint Modal */}
       <DatapointModal
         isOpen={isOpen}
         onClose={onClose}
         datapoint={selectedDatapoint}
       />
 
-      {/* Label Management Modal */}
       <LabelManagementModal
         isOpen={isLabelModalOpen}
         onClose={onLabelModalClose}
@@ -562,7 +560,6 @@ export default function DatasetPage() {
         onLabelCreated={fetchDataset}
       />
 
-      {/* Create Prediction Modal */}
       <CreatePredictionModal
         isOpen={isPredictionModalOpen}
         onClose={onPredictionModalClose}
@@ -571,7 +568,6 @@ export default function DatasetPage() {
         onPredictionCreated={fetchDataset}
       />
 
-      {/* Upload Datapoints Modal */}
       <UploadDatapointsModal
         isOpen={isUploadModalOpen}
         onClose={onUploadModalClose}

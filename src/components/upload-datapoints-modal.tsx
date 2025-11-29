@@ -125,8 +125,6 @@ export function UploadDatapointsModal({
               {error}
             </div>
           )}
-
-          {/* Drag and Drop Area */}
           <div
             onDragOver={handleDragOver}
             onDragEnter={handleDragEnter}
@@ -154,8 +152,6 @@ export function UploadDatapointsModal({
               Select Files
             </Button>
           </div>
-
-          {/* File List */}
           {files.length > 0 && (
             <div>
               <h3 className="text-sm font-semibold mb-2">
@@ -186,8 +182,6 @@ export function UploadDatapointsModal({
               </div>
             </div>
           )}
-
-          {/* Progress Bar */}
           {loading && uploadProgress > 0 && (
             <div>
               <div className="flex justify-between items-center mb-1">

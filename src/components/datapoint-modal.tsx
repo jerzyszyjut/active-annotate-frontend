@@ -20,7 +20,6 @@ export function DatapointModal({
   onClose,
   datapoint,
 }: DatapointModalProps) {
-  // Group predictions by version
   const predictionsByVersion = useMemo(() => {
     if (!datapoint) return new Map<number, ClassificationPrediction[]>();
 
@@ -45,7 +44,6 @@ export function DatapointModal({
         </ModalHeader>
         <Divider />
         <ModalBody className="gap-4 overflow-y-auto flex-1 pb-4">
-          {/* File Preview - Fixed Height Section */}
           <Card className="flex-shrink-0">
             <CardHeader>File Preview</CardHeader>
             <Divider />
@@ -67,7 +65,6 @@ export function DatapointModal({
             </CardBody>
           </Card>
 
-          {/* Current Label - Fixed Height Section */}
           <Card className="flex-shrink-0">
             <CardHeader>Current Label</CardHeader>
             <Divider />
@@ -85,7 +82,6 @@ export function DatapointModal({
             </CardBody>
           </Card>
 
-          {/* Predictions by Version - Scrollable Section */}
           {predictionsByVersion.size > 0 && (
             <div className="space-y-3 flex-1 min-h-0">
               <h3 className="font-semibold text-sm flex-shrink-0">
