@@ -10,9 +10,18 @@ import { useNavigate } from "react-router-dom";
 
 import { ThemeSwitch } from "@/components/theme-switch";
 import { Logo } from "@/components/icons";
+import { useDispatch, useSelector } from "react-redux";
+import { logOut, selectIsAuthenticated } from "@/authSlicer";
 
 export const Navbar = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const isAuthenticated = useSelector(selectIsAuthenticated);
+
+  const handleLogout = () => {
+      dispatch(logOut());
+      navigate("/login");
+  }
 
   return (
     <HeroUINavbar maxWidth="xl" position="sticky">
@@ -39,6 +48,19 @@ export const Navbar = () => {
             </button>
           </NavbarItem>
         </div>
+        {isAuthenticated && (
+          <div>
+            <button 
+              className={clsx(
+                linkStyles({ color: "foreground" }),
+                "cursor-pointer text-foreground hover:text-primary transition-colors"
+              )} 
+              onClick={handleLogout}
+            >
+              Logout
+            </button>
+          </div>
+        )}
       </NavbarContent>
 
       <NavbarContent

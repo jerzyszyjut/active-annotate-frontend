@@ -32,6 +32,7 @@
     "@heroui/use-theme": "2.1.10",
     "@react-aria/visually-hidden": "3.8.28",
     "@react-types/shared": "3.32.1",
+    "@reduxjs/toolkit": "^2.11.0",
     "@tailwindcss/postcss": "4.1.11",
     "@tailwindcss/vite": "4.1.11",
     "clsx": "2.1.1",
@@ -39,7 +40,9 @@
     "ky": "^1.14.0",
     "react": "18.3.1",
     "react-dom": "18.3.1",
+    "react-redux": "^9.2.0",
     "react-router-dom": "6.23.0",
+    "redux": "^5.0.1",
     "tailwind-variants": "3.1.1",
     "tailwindcss": "4.1.11"
   },

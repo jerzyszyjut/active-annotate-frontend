@@ -9,7 +9,7 @@ declare module "@react-types/shared" {
   }
 }
 
-export function Provider({ children }: { children: React.ReactNode }) {
+export function UIProvider({ children }: { children: React.ReactNode }) {
   const navigate = useNavigate();
 
   return (

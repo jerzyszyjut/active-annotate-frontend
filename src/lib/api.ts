@@ -1,10 +1,12 @@
 import ky, { HTTPError } from "ky";
-import type {
-  ClassificationDataset,
-  ClassificationDatapoint,
-  ClassificationLabel,
-  ClassificationPrediction,
+import {
+  type ClassificationDataset,
+  type ClassificationDatapoint,
+  type ClassificationLabel,
+  type ClassificationPrediction,
+  ApiToken,
 } from "@/types";
+import { store } from "../store";
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
 
@@ -12,7 +14,24 @@ const api = ky.create({
   prefixUrl: `${API_BASE_URL}/api`,
   retry: 1,
   timeout: 30000,
+  hooks: {
+    beforeRequest: [
+      request => {
+        const token = store.getState().auth.token;
+        if (!!token) {
+          request.headers.set('Authorization', `Token ${token}`);
+        }
+      },
+    ],
+  },
 });
+
+export const authTokenApi = {
+  getToken: (data: {
+    username: string;
+    password: string;
+  }) => api.post("auth-token/", { json: data }).json<ApiToken>()
+};
 
 export const datasetsApi = {
   list: () =>

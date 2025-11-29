@@ -5,6 +5,10 @@ export type IconSvgProps = SVGProps<SVGSVGElement> & {
   size?: number;
 };
 
+export interface ApiToken {
+  token: string;
+}
+
 export interface ClassificationLabel {
   id: number;
   class_index: number;
