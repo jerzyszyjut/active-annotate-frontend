@@ -8,7 +8,7 @@ import { Input } from "@heroui/input";
 import { Select, SelectItem } from "@heroui/select";
 import { useDisclosure } from "@heroui/modal";
 
-import { datasetsApi, handleApiError, activeLearningApi } from "@/lib/api";
+import { datasetsApi, handleApiError, activeLearningApi } from "@/utils/api";
 import type { ClassificationDataset, ClassificationDatapoint } from "@/types";
 import { DatapointModal } from "@/components/datapoint-modal";
 import { LabelManagementModal } from "@/components/label-management-modal";

@@ -8,7 +8,7 @@ import {
 } from "@heroui/modal";
 import { Button } from "@heroui/button";
 import { Input } from "@heroui/input";
-import { predictionsApi, handleApiError } from "@/lib/api";
+import { predictionsApi, handleApiError } from "@/utils/api";
 import type { ClassificationLabel } from "@/types";
 
 interface CreatePredictionModalProps {

@@ -2,10 +2,10 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
-import { store } from "./store"
+import { store } from "./utils/store.ts"
 
 import App from "./App.tsx";
-import { UIProvider } from "./ui-provider.tsx";
+import { UIProvider } from "./providers/ui-provider.tsx";
 import "@/styles/globals.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(

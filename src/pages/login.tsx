@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectIsAuthenticated, setCredentials } from '../authSlicer'
+import { selectIsAuthenticated, setCredentials } from '../utils/authSlicer'
 import { useNavigate } from "react-router-dom";
-import { authTokenApi } from "@/lib/api";
+import { authTokenApi } from "@/utils/api";
 
   
 function LoginPage() {

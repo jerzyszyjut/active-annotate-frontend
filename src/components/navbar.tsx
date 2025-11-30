@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { ThemeSwitch } from "@/components/theme-switch";
 import { Logo } from "@/components/icons";
 import { useDispatch, useSelector } from "react-redux";
-import { logOut, selectIsAuthenticated } from "@/authSlicer";
+import { logOut, selectIsAuthenticated } from "@/utils/authSlicer";
 
 export const Navbar = () => {
   const dispatch = useDispatch();

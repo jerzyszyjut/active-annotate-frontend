@@ -7,7 +7,7 @@ import {
   ModalFooter,
 } from "@heroui/modal";
 import { Button } from "@heroui/button";
-import { datapointsApi, handleApiError } from "@/lib/api";
+import { datapointsApi, handleApiError } from "@/utils/api";
 
 interface UploadDatapointsModalProps {
   isOpen: boolean;

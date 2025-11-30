@@ -9,7 +9,7 @@ import {
 import { Button } from "@heroui/button";
 import { Input } from "@heroui/input";
 import { Card, CardBody } from "@heroui/card";
-import { labelsApi, handleApiError } from "@/lib/api";
+import { labelsApi, handleApiError } from "@/utils/api";
 import type { ClassificationLabel } from "@/types";
 
 interface LabelManagementModalProps {

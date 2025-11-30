@@ -8,7 +8,7 @@ import {
 } from "@heroui/modal";
 import { Button } from "@heroui/button";
 import { Input } from "@heroui/input";
-import { datasetsApi, handleApiError } from "@/lib/api";
+import { datasetsApi, handleApiError } from "@/utils/api";
 
 interface CreateDatasetModalProps {
   isOpen: boolean;

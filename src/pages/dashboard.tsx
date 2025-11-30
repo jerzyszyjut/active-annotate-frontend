@@ -5,7 +5,7 @@ import { Divider } from "@heroui/divider";
 import { Button } from "@heroui/button";
 import { useDisclosure } from "@heroui/modal";
 
-import { datasetsApi, handleApiError } from "@/lib/api";
+import { datasetsApi, handleApiError } from "@/utils/api";
 import type { ClassificationDataset } from "@/types";
 import { SearchInput } from "@/components/search-input";
 import { CreateDatasetModal } from "@/components/create-dataset-modal";
